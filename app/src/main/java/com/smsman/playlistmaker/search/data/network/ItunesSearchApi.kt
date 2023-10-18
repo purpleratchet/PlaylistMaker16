@@ -1,4 +1,4 @@
-package com.smsman.playlistmaker.search.data
+package com.smsman.playlistmaker.search.data.network
 
 import com.google.gson.JsonObject
 import retrofit2.Call

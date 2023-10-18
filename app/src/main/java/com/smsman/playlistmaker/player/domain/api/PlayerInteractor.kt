@@ -1,15 +1,15 @@
 package com.smsman.playlistmaker.player.domain.api
 
 interface PlayerInteractor {
-    fun startAudio()
-    fun pauseAudio()
-    fun isPlaying(): Boolean
-    fun currentPosition(): Int
-    fun playbackControl(onStartPlayer: () -> Unit, onPausePlayer: () -> Unit)
+    fun preparePlayer(url: String, onPreparedListener: () -> Unit)
 
-    fun preparePlayer(
-        dataSource: String,
-        onPreparedListener: () -> Unit,
-        onCompletionListener: () -> Unit
-    )
+    fun setOnCompletionListener(onCompletionListener: () -> Unit)
+
+    fun getCurrentPosition(): Int
+
+    fun startPlayer()
+
+    fun pausePlayer()
+
+    fun destroyPlayer()
 }

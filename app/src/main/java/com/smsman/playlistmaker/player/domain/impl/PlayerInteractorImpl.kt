@@ -1,35 +1,31 @@
 package com.smsman.playlistmaker.player.domain.impl
 
-import com.smsman.playlistmaker.player.domain.api.Player
 import com.smsman.playlistmaker.player.domain.api.PlayerInteractor
+import com.smsman.playlistmaker.player.domain.api.PlayerRepository
 
-class PlayerInteractorImpl(private val player: Player) : PlayerInteractor {
+class PlayerInteractorImpl(private val playerRepository: PlayerRepository) : PlayerInteractor {
 
-    override fun startAudio() {
-        player.startAudio()
+    override fun preparePlayer(url: String, onPreparedListener: () -> Unit) {
+        playerRepository.preparePlayer(url, onPreparedListener)
     }
 
-    override fun pauseAudio() {
-        player.pauseAudio()
+    override fun setOnCompletionListener(onCompletionListener: () -> Unit) {
+        playerRepository.setOnCompletionListener(onCompletionListener)
     }
 
-    override fun isPlaying(): Boolean {
-        return player.isPlaying()
+    override fun getCurrentPosition(): Int {
+        return playerRepository.getCurrentPosition()
     }
 
-    override fun currentPosition(): Int {
-        return player.currentPosition()
+    override fun startPlayer() {
+        playerRepository.startPlayer()
     }
 
-    override fun preparePlayer(
-        dataSource: String,
-        onPreparedListener: () -> Unit,
-        onCompletionListener: () -> Unit
-    ) {
-        player.preparePlayer(dataSource, onPreparedListener, onCompletionListener)
+    override fun pausePlayer() {
+        playerRepository.pausePlayer()
     }
 
-    override fun playbackControl(onStartPlayer: () -> Unit, onPausePlayer: () -> Unit) {
-        player.playbackControl(onStartPlayer, onPausePlayer)
+    override fun destroyPlayer() {
+        playerRepository.destroyPlayer()
     }
 }
